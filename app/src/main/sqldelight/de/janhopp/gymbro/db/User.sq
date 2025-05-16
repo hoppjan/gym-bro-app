@@ -1,0 +1,31 @@
+CREATE TABLE User (
+  id INTEGER PRIMARY KEY NOT NULL,
+  username TEXT NOT NULL
+);
+
+INSERT INTO User(id, username)
+VALUES
+ (15, 'Ryan Getzlaf'),
+ (1, "Jan Hopp");
+
+selectAll:
+SELECT *
+FROM User;
+
+findById:
+SELECT *
+FROM User
+WHERE id = ?;
+
+findByName:
+SELECT *
+FROM User
+WHERE (username = ?);
+
+insertUser:
+INSERT INTO User(id, username)
+VALUES (?, ?);
+
+insert:
+INSERT INTO User(id, username)
+VALUES ?;
