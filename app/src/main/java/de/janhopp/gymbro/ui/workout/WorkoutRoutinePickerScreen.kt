@@ -19,7 +19,7 @@ fun WorkoutRoutinePickerScreen(
         Text(
             text = "Workout Routines",
             style = MaterialTheme.typography.titleLarge,
-            modifier = Modifier.padding(vertical = 16.dp),
+            modifier = Modifier.padding(all = 16.dp),
         )
         workoutRoutines.forEach { routine ->
             ListItem(
