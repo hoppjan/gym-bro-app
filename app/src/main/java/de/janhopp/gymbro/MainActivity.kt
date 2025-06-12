@@ -18,11 +18,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        val routines = listOf(
-            WorkoutRoutine(0, "Beine", "Unterkörper", emptyList()),
-            WorkoutRoutine(0, "Arme", "Oberkörper", emptyList()),
-            WorkoutRoutine(0, "Po", "Popo", emptyList()),
-        )
         setContent {
             GymBroTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
@@ -42,11 +37,13 @@ fun GreetingPreview() {
     GymBroTheme {
         WorkoutRoutinePickerScreen(
             modifier = Modifier.fillMaxSize(),
-            workoutRoutines = listOf(
-                WorkoutRoutine(0, "Beine", "Unterkörper", emptyList()),
-                WorkoutRoutine(0, "Arme", "Oberkörper", emptyList()),
-                WorkoutRoutine(0, "Po", "Popo", emptyList()),
-            ),
+            workoutRoutines = routines,
         )
     }
 }
+
+private val routines = listOf(
+    WorkoutRoutine(0, "Beine", "Unterkörper", "\uD83E\uDDB5", emptyList()),
+    WorkoutRoutine(0, "Arme", "Oberkörper", "\uD83D\uDCAA", emptyList()),
+    WorkoutRoutine(0, "Po", "Popo", "\uD83C\uDF51", emptyList()),
+)

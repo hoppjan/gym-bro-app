@@ -6,5 +6,6 @@ data class WorkoutRoutine(
     val id: Long,
     val name: String,
     val description: String?,
+    val emoji: String?,
     val exercises: List<Exercise>,
 )

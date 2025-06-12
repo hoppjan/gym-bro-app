@@ -2,6 +2,7 @@ package de.janhopp.gymbro.ui.workout
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,18 +22,19 @@ fun WorkoutRoutinePickerScreen(
             modifier = Modifier.padding(vertical = 16.dp),
         )
         workoutRoutines.forEach { routine ->
-            Column(
-                modifier = Modifier.padding(vertical = 4.dp),
-            ) {
-                Text(
-                    text = routine.name,
-                    style = MaterialTheme.typography.titleMedium,
-                )
-                Text(
-                    routine.description ?: "",
-                    style = MaterialTheme.typography.bodyMedium,
-                )
-            }
+            ListItem(
+                headlineContent = {
+                    Text(text = routine.name)
+                },
+                supportingContent = {
+                    Text(text = routine.description ?: "")
+                },
+                leadingContent = {
+                    routine.emoji?.let { emoji ->
+                        Text(text = emoji)
+                    }
+                },
+            )
         }
     }
 }
