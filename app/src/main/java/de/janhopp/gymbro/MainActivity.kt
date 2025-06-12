@@ -44,6 +44,6 @@ fun GreetingPreview() {
 
 private val routines = listOf(
     WorkoutRoutine(0, "Beine", "Unterkörper", "\uD83E\uDDB5", emptyList()),
-    WorkoutRoutine(0, "Arme", "Oberkörper", "\uD83D\uDCAA", emptyList()),
-    WorkoutRoutine(0, "Po", "Popo", "\uD83C\uDF51", emptyList()),
+    WorkoutRoutine(1, "Arme", "Oberkörper", "\uD83D\uDCAA", emptyList()),
+    WorkoutRoutine(2, "Po", "Popo", "\uD83C\uDF51", emptyList()),
 )
