@@ -9,6 +9,11 @@ enum class WeightUnit {
     KILOGRAMS,
     POUNDS,
     ;
+
+    override fun toString(): String = when (this) {
+        KILOGRAMS -> "kg"
+        POUNDS -> "lb"
+    }
 }
 
 val Int.kg: Weight
