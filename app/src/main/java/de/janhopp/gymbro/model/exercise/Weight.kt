@@ -10,3 +10,9 @@ enum class WeightUnit {
     POUNDS,
     ;
 }
+
+val Int.kg: Weight
+    get() = Weight(this, WeightUnit.KILOGRAMS)
+
+val Int.lb: Weight
+    get() = Weight(this, WeightUnit.POUNDS)
