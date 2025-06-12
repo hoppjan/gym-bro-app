@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import de.janhopp.gymbro.model.exercise.WeightExercise
 import de.janhopp.gymbro.model.workout.WorkoutRoutine
 
 @Composable
@@ -50,7 +51,22 @@ fun WorkoutRoutineScreen(
                     Text(text = exercise.name)
                 },
                 supportingContent = {
-                    Text(text = exercise.description ?: "")
+                    Column {
+                        if (exercise is WeightExercise) {
+                            Text(
+                                text = buildString {
+                                    append(exercise.sets)
+                                    append(" x ")
+                                    append(exercise.reps)
+                                    append(" @ ")
+                                    append(exercise.weight.value)
+                                    append(" ")
+                                    append(exercise.weight.unit)
+                                }
+                            )
+                        }
+                        Text(text = exercise.description ?: "")
+                    }
                 },
                 leadingContent = {
                     routine.emoji?.let { emoji ->
