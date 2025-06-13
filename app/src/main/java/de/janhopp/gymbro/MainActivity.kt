@@ -44,13 +44,19 @@ fun GreetingPreview() {
     }
 }
 
+operator fun <T> List<T>.times(n: Int): List<T> = buildList {
+    repeat(n) {
+        addAll(elements = this@times)
+    }
+}
+
 private val routines = listOf(
     WorkoutRoutine(0, "Beine", "Unterkörper", "\uD83E\uDDB5", emptyList()),
     WorkoutRoutine(1, "Arme", "Oberkörper", "\uD83D\uDCAA", emptyList()),
     WorkoutRoutine(2, "Po", "Popo", "\uD83C\uDF51", emptyList()),
     WorkoutRoutine(3, "Cardio", "Lässt jedes Herz höher schlagen", "❤\uFE0F", emptyList()),
     WorkoutRoutine(4, "Wilder Mix", "Gewichte, Gewichte, Gewichte", null, emptyList()),
-)
+) * 3
 
 private val routine = WorkoutRoutine(
     id = 0,
