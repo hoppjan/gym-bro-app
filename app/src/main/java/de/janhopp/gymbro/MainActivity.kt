@@ -15,7 +15,6 @@ import de.janhopp.gymbro.model.exercise.kg
 import de.janhopp.gymbro.model.workout.WorkoutRoutine
 import de.janhopp.gymbro.ui.theme.GymBroTheme
 import de.janhopp.gymbro.ui.workout.WorkoutRoutinePickerScreen
-import de.janhopp.gymbro.ui.workout.routine.WorkoutRoutineScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,9 +23,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             GymBroTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    WorkoutRoutineScreen(
+                    WorkoutRoutinePickerScreen(
                         modifier = Modifier.padding(innerPadding),
-                        routine = routine,
+                        workoutRoutines = routines,
                     )
                 }
             }
@@ -49,6 +48,8 @@ private val routines = listOf(
     WorkoutRoutine(0, "Beine", "Unterkörper", "\uD83E\uDDB5", emptyList()),
     WorkoutRoutine(1, "Arme", "Oberkörper", "\uD83D\uDCAA", emptyList()),
     WorkoutRoutine(2, "Po", "Popo", "\uD83C\uDF51", emptyList()),
+    WorkoutRoutine(3, "Cardio", "Lässt jedes Herz höher schlagen", "❤\uFE0F", emptyList()),
+    WorkoutRoutine(4, "Wilder Mix", "Gewichte, Gewichte, Gewichte", null, emptyList()),
 )
 
 private val routine = WorkoutRoutine(
