@@ -2,12 +2,14 @@ package de.janhopp.gymbro.ui.workout
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import de.janhopp.gymbro.model.workout.WorkoutRoutine
 
 @Composable
@@ -29,9 +31,10 @@ fun WorkoutRoutinePickerScreen(
                     Text(text = routine.description ?: "")
                 },
                 leadingContent = {
-                    routine.emoji?.let { emoji ->
-                        Text(text = emoji)
-                    }
+                    Text(
+                        text = routine.emoji ?: "",
+                        modifier = Modifier.width(20.dp)
+                    )
                 },
             )
         }
