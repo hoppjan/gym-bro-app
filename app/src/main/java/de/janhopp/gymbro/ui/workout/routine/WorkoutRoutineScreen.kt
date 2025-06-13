@@ -1,7 +1,10 @@
 package de.janhopp.gymbro.ui.workout.routine
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -18,13 +21,13 @@ fun WorkoutRoutineScreen(
     routine: WorkoutRoutine,
 ) {
     Column(
-        modifier = modifier,
+        modifier = modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         routine.emoji?.let {
             Text(
                 text = it,
                 modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
                     .padding(top = 48.dp),
                 style = MaterialTheme.typography.displayLarge,
             )
@@ -32,7 +35,6 @@ fun WorkoutRoutineScreen(
         Text(
             text = routine.name,
             modifier = Modifier
-                .align(Alignment.CenterHorizontally)
                 .padding(top = 32.dp, bottom = 8.dp),
             style = MaterialTheme.typography.titleLarge,
         )
@@ -40,40 +42,53 @@ fun WorkoutRoutineScreen(
             Text(
                 text = description,
                 modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
                     .padding(bottom = 8.dp),
                 style = MaterialTheme.typography.bodyMedium,
             )
         }
-        routine.exercises.forEach { exercise ->
-            ListItem(
-                headlineContent = {
-                    Text(text = exercise.name)
-                },
-                supportingContent = {
-                    Column {
-                        if (exercise is WeightExercise) {
-                            Text(
-                                text = buildString {
-                                    append(exercise.sets)
-                                    append(" x ")
-                                    append(exercise.reps)
-                                    append(" @ ")
-                                    append(exercise.weight.value)
-                                    append(" ")
-                                    append(exercise.weight.unit)
-                                }
-                            )
-                        }
-                        Text(text = exercise.description ?: "")
-                    }
-                },
-                leadingContent = {
-                    routine.emoji?.let { emoji ->
-                        Text(text = emoji)
-                    }
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = if (routine.exercises.isEmpty()) Arrangement.Center else Arrangement.Top
+        ) {
+            if (routine.exercises.isEmpty()) {
+                Button(
+                    onClick = { /* TODO */ },
+                ) {
+                    Text(text = "Add exercises")
                 }
-            )
+            } else {
+                routine.exercises.forEach { exercise ->
+                    ListItem(
+                        headlineContent = {
+                            Text(text = exercise.name)
+                        },
+                        supportingContent = {
+                            Column {
+                                if (exercise is WeightExercise) {
+                                    Text(
+                                        text = buildString {
+                                            append(exercise.sets)
+                                            append(" x ")
+                                            append(exercise.reps)
+                                            append(" @ ")
+                                            append(exercise.weight.value)
+                                            append(" ")
+                                            append(exercise.weight.unit)
+                                        }
+                                    )
+                                }
+                                Text(text = exercise.description ?: "")
+                            }
+                        },
+                        leadingContent = {
+                            routine.emoji?.let { emoji ->
+                                Text(text = emoji)
+                            }
+                        }
+                    )
+                }
+            }
         }
     }
 }
