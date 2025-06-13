@@ -1,5 +1,6 @@
 package de.janhopp.gymbro.ui.workout
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -13,12 +14,14 @@ import de.janhopp.gymbro.model.workout.WorkoutRoutine
 fun WorkoutRoutinePickerScreen(
     modifier: Modifier = Modifier,
     workoutRoutines: List<WorkoutRoutine>,
+    onRoutineSelected: (WorkoutRoutine) -> Unit = {},
 ) {
     Column(
         modifier = modifier.verticalScroll(rememberScrollState()),
     ) {
         workoutRoutines.forEach { routine ->
             ListItem(
+                modifier = Modifier.clickable { onRoutineSelected(routine) },
                 headlineContent = {
                     Text(text = routine.name)
                 },
