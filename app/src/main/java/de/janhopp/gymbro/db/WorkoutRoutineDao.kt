@@ -5,21 +5,22 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import de.janhopp.gymbro.model.workout.WorkoutRoutine
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface WorkoutRoutineDao {
     @Query("SELECT * FROM WorkoutRoutine")
-    fun getAll(): List<WorkoutRoutine>
+    fun getAll(): Flow<List<WorkoutRoutine>>
 
     @Query("SELECT * FROM WorkoutRoutine WHERE id = :id")
-    fun findById(id: Int): WorkoutRoutine
+    fun findById(id: Int): Flow<WorkoutRoutine>
 
     @Query("SELECT * FROM WorkoutRoutine WHERE name LIKE :name LIMIT 1")
-    fun findByName(name: String): WorkoutRoutine
+    fun findByName(name: String): Flow<WorkoutRoutine>
 
     @Insert
-    fun insertAll(vararg users: WorkoutRoutine)
+    suspend fun insertAll(vararg users: WorkoutRoutine)
 
     @Delete
-    fun delete(user: WorkoutRoutine)
+    suspend fun delete(user: WorkoutRoutine)
 }

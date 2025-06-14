@@ -6,16 +6,21 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import de.janhopp.gymbro.model.workout.WorkoutRoutine
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun WorkoutRoutineScreen(
     modifier: Modifier = Modifier,
-    routine: WorkoutRoutine,
+    routineId: Int,
+    viewModel: WorkoutRoutineViewModel = koinViewModel(),
 ) {
+    val routine by viewModel.getWorkoutRoutine(routineId).collectAsState(initial = WorkoutRoutine(0, "", null, null))
     Column(
         modifier = modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,

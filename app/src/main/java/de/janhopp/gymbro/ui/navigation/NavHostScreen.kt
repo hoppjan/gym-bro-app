@@ -7,6 +7,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -40,8 +42,10 @@ fun NavHostScreen() {
             startDestination = Destination.WorkoutRoutinePicker
         ) {
             composable<Destination.WorkoutRoutinePicker> {
+                val workoutRoutines by workoutRoutineViewModel.getWorkoutRoutines().collectAsState(emptyList())
+
                 WorkoutRoutinePickerScreen(
-                    workoutRoutines = workoutRoutineViewModel.getWorkoutRoutines(),
+                    workoutRoutines = workoutRoutines,
                     onRoutineSelected = { routine ->
                         navController.navigate(
                             Destination.WorkoutRoutineOverview(routine.id)
@@ -51,9 +55,8 @@ fun NavHostScreen() {
             }
             composable<Destination.WorkoutRoutineOverview> { backStackEntry ->
                 val args = backStackEntry.toRoute<Destination.WorkoutRoutineOverview>()
-                val routine = workoutRoutineViewModel.getWorkoutRoutine(args.routineId.toInt())
                 WorkoutRoutineScreen(
-                    routine = routine,
+                    routineId = args.routineId,
                 )
             }
         }

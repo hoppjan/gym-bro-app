@@ -1,26 +1,29 @@
 package de.janhopp.gymbro.ui.workout.routine
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import de.janhopp.gymbro.db.WorkoutRoutineDao
 import de.janhopp.gymbro.model.exercise.WeightExercise
 import de.janhopp.gymbro.model.exercise.kg
 import de.janhopp.gymbro.model.workout.WorkoutRoutine
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 
 class WorkoutRoutineViewModel(
     private val workoutRoutines: WorkoutRoutineDao,
 ) : ViewModel() {
-    fun getWorkoutRoutines(): List<WorkoutRoutine> {
+    fun getWorkoutRoutines(): Flow<List<WorkoutRoutine>> {
         return workoutRoutines.getAll()
     }
 
-    fun getWorkoutRoutine(id: Int): WorkoutRoutine {
+    fun getWorkoutRoutine(id: Int): Flow<WorkoutRoutine> {
         return workoutRoutines.findById(id)
     }
-}
 
-operator fun <T> List<T>.times(n: Int): List<T> = buildList {
-    repeat(n) {
-        addAll(elements = this@times)
+    fun addWorkoutRoutines() {
+        viewModelScope.launch {
+            workoutRoutines.insertAll(*routines.toTypedArray())
+        }
     }
 }
 
@@ -49,8 +52,8 @@ private val exercises = listOf(
 
 private val routines = listOf(
     WorkoutRoutine(0, "Beine", "Unterkörper", "\uD83E\uDDB5"),
-    WorkoutRoutine(1, "Arme", "Oberkörper", "\uD83D\uDCAA"),
-    WorkoutRoutine(2, "Po", "Popo", "\uD83C\uDF51"),
-    WorkoutRoutine(3, "Cardio", "Lässt jedes Herz höher schlagen", "❤\uFE0F"),
-    WorkoutRoutine(4, "Wilder Mix", "Gewichte, Gewichte, Gewichte", null),
-) * 3
+    WorkoutRoutine(0, "Arme", "Oberkörper", "\uD83D\uDCAA"),
+    WorkoutRoutine(0, "Po", "Popo", "\uD83C\uDF51"),
+    WorkoutRoutine(0, "Cardio", "Lässt jedes Herz höher schlagen", "❤\uFE0F"),
+    WorkoutRoutine(0, "Wilder Mix", "Gewichte, Gewichte, Gewichte", null),
+)

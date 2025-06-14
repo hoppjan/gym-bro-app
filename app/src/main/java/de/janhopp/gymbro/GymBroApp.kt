@@ -19,7 +19,6 @@ class GymBroApp : Application() {
             androidContext(this@GymBroApp)
             val db = Room
                 .databaseBuilder(applicationContext, GymDatabase::class.java, "gym-database")
-                .allowMainThreadQueries()
                 .build()
             modules(
                 module {
