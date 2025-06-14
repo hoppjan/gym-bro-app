@@ -1,9 +1,15 @@
 package de.janhopp.gymbro
 
 import android.app.Application
+import androidx.room.Room
+import de.janhopp.gymbro.db.GymDatabase
+import de.janhopp.gymbro.db.WorkoutRoutineDao
+import de.janhopp.gymbro.ui.workout.routine.WorkoutRoutineViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext.startKoin
+import org.koin.core.module.dsl.viewModel
+import org.koin.dsl.module
 
 class GymBroApp : Application() {
     override fun onCreate() {
@@ -11,6 +17,17 @@ class GymBroApp : Application() {
         startKoin {
             androidLogger()
             androidContext(this@GymBroApp)
+            val db = Room
+                .databaseBuilder(applicationContext, GymDatabase::class.java, "gym-database")
+                .allowMainThreadQueries()
+                .build()
+            modules(
+                module {
+                    single<GymDatabase> { db }
+                    single<WorkoutRoutineDao> { db.workoutRoutineDao() }
+                    viewModel { WorkoutRoutineViewModel(get()) }
+                },
+            )
         }
     }
 }

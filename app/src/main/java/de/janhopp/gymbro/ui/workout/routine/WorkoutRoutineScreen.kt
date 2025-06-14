@@ -1,18 +1,14 @@
 package de.janhopp.gymbro.ui.workout.routine
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import de.janhopp.gymbro.model.exercise.WeightExercise
 import de.janhopp.gymbro.model.workout.WorkoutRoutine
 
 @Composable
@@ -46,10 +42,11 @@ fun WorkoutRoutineScreen(
                 style = MaterialTheme.typography.bodyMedium,
             )
         }
+        /* TODO: this needed disabling because the DB does not like lists, fix
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = if (routine.exercises.isEmpty()) Arrangement.Center else Arrangement.Top
+            //verticalArrangement = if (routine.exercises.isEmpty()) Arrangement.Center else Arrangement.Top
         ) {
             if (routine.exercises.isEmpty()) {
                 Button(
@@ -90,5 +87,6 @@ fun WorkoutRoutineScreen(
                 }
             }
         }
+        */
     }
 }
