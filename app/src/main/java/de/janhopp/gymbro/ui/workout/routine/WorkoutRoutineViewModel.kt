@@ -2,15 +2,19 @@ package de.janhopp.gymbro.ui.workout.routine
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import de.janhopp.gymbro.db.ExerciseDao
 import de.janhopp.gymbro.db.WorkoutRoutineDao
+import de.janhopp.gymbro.model.exercise.Exercise
 import de.janhopp.gymbro.model.exercise.WeightExercise
 import de.janhopp.gymbro.model.exercise.kg
 import de.janhopp.gymbro.model.workout.WorkoutRoutine
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class WorkoutRoutineViewModel(
     private val workoutRoutines: WorkoutRoutineDao,
+    private val exercises: ExerciseDao,
 ) : ViewModel() {
     fun getWorkoutRoutines(): Flow<List<WorkoutRoutine>> {
         return workoutRoutines.getAll()
@@ -23,6 +27,23 @@ class WorkoutRoutineViewModel(
     fun addWorkoutRoutines() {
         viewModelScope.launch {
             workoutRoutines.insertAll(*routines.toTypedArray())
+        }
+    }
+
+    fun getWorkoutRoutineExercises(routineId: Int): Flow<List<Exercise>> {
+        return exercises.getAll().map { l ->
+            l.map {
+                WeightExercise(
+                    it.id,
+                    it.name,
+                    it.description,
+                    it.equipment,
+                    it.muscleGroup,
+                    it.sets ?: 0,
+                    it.reps ?: 0,
+                    it.weight ?: 0.kg
+                )
+            }
         }
     }
 }

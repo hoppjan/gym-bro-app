@@ -1,8 +1,11 @@
 package de.janhopp.gymbro.ui.workout.routine
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -11,6 +14,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import de.janhopp.gymbro.model.exercise.WeightExercise
 import de.janhopp.gymbro.model.workout.WorkoutRoutine
 import org.koin.androidx.compose.koinViewModel
 
@@ -21,6 +25,7 @@ fun WorkoutRoutineScreen(
     viewModel: WorkoutRoutineViewModel = koinViewModel(),
 ) {
     val routine by viewModel.getWorkoutRoutine(routineId).collectAsState(initial = WorkoutRoutine(0, "", null, null))
+    val exercises by viewModel.getWorkoutRoutineExercises(routineId).collectAsState(initial = emptyList())
     Column(
         modifier = modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -47,20 +52,19 @@ fun WorkoutRoutineScreen(
                 style = MaterialTheme.typography.bodyMedium,
             )
         }
-        /* TODO: this needed disabling because the DB does not like lists, fix
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            //verticalArrangement = if (routine.exercises.isEmpty()) Arrangement.Center else Arrangement.Top
+            verticalArrangement = if (exercises.isEmpty()) Arrangement.Center else Arrangement.Top
         ) {
-            if (routine.exercises.isEmpty()) {
+            if (exercises.isEmpty()) {
                 Button(
                     onClick = { /* TODO */ },
                 ) {
                     Text(text = "Add exercises")
                 }
             } else {
-                routine.exercises.forEach { exercise ->
+                exercises.forEach { exercise ->
                     ListItem(
                         headlineContent = {
                             Text(text = exercise.name)
@@ -92,6 +96,5 @@ fun WorkoutRoutineScreen(
                 }
             }
         }
-        */
     }
 }

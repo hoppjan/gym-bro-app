@@ -2,6 +2,7 @@ package de.janhopp.gymbro
 
 import android.app.Application
 import androidx.room.Room
+import de.janhopp.gymbro.db.ExerciseDao
 import de.janhopp.gymbro.db.GymDatabase
 import de.janhopp.gymbro.db.WorkoutRoutineDao
 import de.janhopp.gymbro.ui.workout.routine.WorkoutRoutineViewModel
@@ -24,7 +25,8 @@ class GymBroApp : Application() {
                 module {
                     single<GymDatabase> { db }
                     single<WorkoutRoutineDao> { db.workoutRoutineDao() }
-                    viewModel { WorkoutRoutineViewModel(get()) }
+                    single<ExerciseDao> { db.exerciseDao() }
+                    viewModel { WorkoutRoutineViewModel(get(), get()) }
                 },
             )
         }
