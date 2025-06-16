@@ -80,3 +80,12 @@ fun ExerciseTable.toExercise(): Exercise = when (type) {
     ExerciseType.CARDIO ->
         CardioExercise(id, name, description, equipment, muscleGroup)
 }
+
+fun Exercise.toExerciseTable(): ExerciseTable = when (this) {
+    is WeightExercise ->
+        ExerciseTable(id, ExerciseType.WEIGHT, name, description, equipment, muscleGroup, sets, reps, weight = weight, duration = null)
+    is BodyWeightExercise ->
+        ExerciseTable(id, ExerciseType.BODY_WEIGHT, name, description, equipment, muscleGroup, sets, reps, weight = null, duration = null)
+    is CardioExercise ->
+        ExerciseTable(id, ExerciseType.CARDIO, name, description, equipment, muscleGroup, sets = null, reps = null, weight = null, duration = null)
+}
