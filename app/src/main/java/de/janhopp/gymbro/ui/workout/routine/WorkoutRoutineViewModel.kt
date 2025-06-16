@@ -5,12 +5,13 @@ import androidx.lifecycle.viewModelScope
 import de.janhopp.gymbro.db.ExerciseDao
 import de.janhopp.gymbro.db.WorkoutRoutineDao
 import de.janhopp.gymbro.model.exercise.Exercise
+import de.janhopp.gymbro.model.exercise.ExerciseTable
 import de.janhopp.gymbro.model.exercise.WeightExercise
 import de.janhopp.gymbro.model.exercise.kg
 import de.janhopp.gymbro.model.exercise.toExercise
+import de.janhopp.gymbro.model.exercise.toExerciseTable
 import de.janhopp.gymbro.model.workout.WorkoutRoutine
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -35,9 +36,19 @@ class WorkoutRoutineViewModel(
     fun getWorkoutRoutineExercises(routineId: Int): Flow<List<Exercise>> {
         return exercises.getAll().map { list -> list.map { it.toExercise() } }
     }
+
+    fun addExercises() {
+        viewModelScope.launch {
+            exercises.insertAll(
+                *exerciseList
+                    .map { it.toExerciseTable() }
+                    .toTypedArray<ExerciseTable>()
+            )
+        }
+    }
 }
 
-private val exercises = listOf(
+private val exerciseList = listOf(
     WeightExercise(
         id = 0,
         name = "Leg Press",
@@ -49,7 +60,7 @@ private val exercises = listOf(
         weight = 80.kg,
     ),
     WeightExercise(
-        id = 1,
+        id = 0,
         name = "Leg Press 2",
         description = "Wie Kniebeugen im Autsch-Modus 2",
         equipment = "Wieder Leg press",

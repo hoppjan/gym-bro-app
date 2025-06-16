@@ -59,7 +59,7 @@ fun WorkoutRoutineScreen(
         ) {
             if (exercises.isEmpty()) {
                 Button(
-                    onClick = { /* TODO */ },
+                    onClick = { viewModel.addExercises() },
                 ) {
                     Text(text = "Add exercises")
                 }
