@@ -7,8 +7,10 @@ import de.janhopp.gymbro.db.WorkoutRoutineDao
 import de.janhopp.gymbro.model.exercise.Exercise
 import de.janhopp.gymbro.model.exercise.WeightExercise
 import de.janhopp.gymbro.model.exercise.kg
+import de.janhopp.gymbro.model.exercise.toExercise
 import de.janhopp.gymbro.model.workout.WorkoutRoutine
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -31,20 +33,7 @@ class WorkoutRoutineViewModel(
     }
 
     fun getWorkoutRoutineExercises(routineId: Int): Flow<List<Exercise>> {
-        return exercises.getAll().map { l ->
-            l.map {
-                WeightExercise(
-                    it.id,
-                    it.name,
-                    it.description,
-                    it.equipment,
-                    it.muscleGroup,
-                    it.sets ?: 0,
-                    it.reps ?: 0,
-                    it.weight ?: 0.kg
-                )
-            }
-        }
+        return exercises.getAll().map { list -> list.map { it.toExercise() } }
     }
 }
 
