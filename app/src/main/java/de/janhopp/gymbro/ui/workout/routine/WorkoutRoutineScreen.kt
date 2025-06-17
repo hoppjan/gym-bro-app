@@ -4,7 +4,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -14,9 +17,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import de.janhopp.gymbro.model.exercise.Exercise
 import de.janhopp.gymbro.model.exercise.WeightExercise
 import de.janhopp.gymbro.model.workout.WorkoutRoutine
 import org.koin.androidx.compose.koinViewModel
+import sh.calvin.reorderable.ReorderableColumn
 
 @Composable
 fun WorkoutRoutineScreen(
@@ -24,8 +29,10 @@ fun WorkoutRoutineScreen(
     routineId: Int,
     viewModel: WorkoutRoutineViewModel = koinViewModel(),
 ) {
-    val routine by viewModel.getWorkoutRoutine(routineId).collectAsState(initial = WorkoutRoutine(0, "", null, null))
-    val exercises by viewModel.getWorkoutRoutineExercises(routineId).collectAsState(initial = emptyList())
+    val routine by viewModel.getWorkoutRoutine(routineId)
+        .collectAsState(initial = WorkoutRoutine(0, "", null, null))
+    val exercises by viewModel.getWorkoutRoutineExercises(routineId)
+        .collectAsState(initial = emptyList())
     Column(
         modifier = modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -52,11 +59,13 @@ fun WorkoutRoutineScreen(
                 style = MaterialTheme.typography.bodyMedium,
             )
         }
-        Column(
+        ReorderableColumn(
+            list = exercises,
+            onSettle = { fromIndex, toIndex -> /* TODO */},
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = if (exercises.isEmpty()) Arrangement.Center else Arrangement.Top
-        ) {
+        ) { index: Int, exercise: Exercise, isDragging: Boolean ->
             if (exercises.isEmpty()) {
                 Button(
                     onClick = { viewModel.addExercises() },
@@ -64,36 +73,36 @@ fun WorkoutRoutineScreen(
                     Text(text = "Add exercises")
                 }
             } else {
-                exercises.forEach { exercise ->
-                    ListItem(
-                        headlineContent = {
-                            Text(text = exercise.name)
-                        },
-                        supportingContent = {
-                            Column {
-                                if (exercise is WeightExercise) {
-                                    Text(
-                                        text = buildString {
-                                            append(exercise.sets)
-                                            append(" x ")
-                                            append(exercise.reps)
-                                            append(" @ ")
-                                            append(exercise.weight.value)
-                                            append(" ")
-                                            append(exercise.weight.unit)
-                                        }
-                                    )
-                                }
-                                Text(text = exercise.description ?: "")
+                ListItem(
+                    headlineContent = {
+                        Text(text = exercise.name)
+                    },
+                    supportingContent = {
+                        Column {
+                            if (exercise is WeightExercise) {
+                                Text(
+                                    text = buildString {
+                                        append(exercise.sets)
+                                        append(" x ")
+                                        append(exercise.reps)
+                                        append(" @ ")
+                                        append(exercise.weight.value)
+                                        append(" ")
+                                        append(exercise.weight.unit)
+                                    }
+                                )
                             }
-                        },
-                        leadingContent = {
-                            routine.emoji?.let { emoji ->
-                                Text(text = emoji)
-                            }
+                            Text(text = exercise.description ?: "")
                         }
-                    )
-                }
+                    },
+                    leadingContent = {
+                        Icon(
+                            modifier = Modifier.draggableHandle(),
+                            imageVector = Icons.Default.Menu,
+                            contentDescription = "Reorder",
+                        )
+                    }
+                )
             }
         }
     }
