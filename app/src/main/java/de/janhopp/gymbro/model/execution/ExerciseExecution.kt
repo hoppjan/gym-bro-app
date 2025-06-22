@@ -1,6 +1,5 @@
 package de.janhopp.gymbro.model.execution
 
-import de.janhopp.gymbro.model.exercise.Set
 import de.janhopp.gymbro.model.planning.Exercise
 
 data class ExerciseExecution(

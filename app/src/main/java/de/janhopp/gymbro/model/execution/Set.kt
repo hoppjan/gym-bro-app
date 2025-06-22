@@ -1,4 +1,4 @@
-package de.janhopp.gymbro.model.exercise
+package de.janhopp.gymbro.model.execution
 
 data class Set(
     val id: Long,
