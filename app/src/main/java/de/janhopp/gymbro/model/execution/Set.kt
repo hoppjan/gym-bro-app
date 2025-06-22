@@ -2,7 +2,7 @@ package de.janhopp.gymbro.model.execution
 
 import de.janhopp.gymbro.model.exercise.Weight
 
-interface Set {
+sealed interface Set {
     val id: Int
     val index: Int
 }
