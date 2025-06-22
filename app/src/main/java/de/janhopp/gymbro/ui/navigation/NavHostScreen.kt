@@ -36,14 +36,14 @@ fun NavHostScreen() {
         val onboardingViewModel = koinViewModel<OnboardingViewModel>()
         val workoutRoutineViewModel = koinViewModel<WorkoutRoutineViewModel>()
 
-        val isOnboardingComplete by onboardingViewModel.isOnboardingComplete.collectAsState(initial = false)
+        val isOnboardingComplete by onboardingViewModel.isOnboardingComplete.collectAsState(initial = true)
         NavHost(
             modifier = Modifier.padding(innerPadding),
             navController = navController,
             startDestination = if (isOnboardingComplete) Destination.WorkoutRoutinePicker else Destination.Onboarding,
         ) {
             composable<Destination.Onboarding> {
-                OnboardingScreen(onboardingViewModel)
+                OnboardingScreen(onboardingViewModel, { navController.navigate(it) })
             }
             composable<Destination.WorkoutRoutinePicker> {
                 val workoutRoutines by workoutRoutineViewModel.getWorkoutRoutines().collectAsState(emptyList())
