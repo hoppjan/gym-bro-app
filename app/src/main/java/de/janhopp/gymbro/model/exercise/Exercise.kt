@@ -70,6 +70,7 @@ data class CardioExercise(
     override val description: String?,
     override val equipment: String?,
     override val muscleGroup: String?,
+    val duration: Duration,
 ) : Exercise
 
 fun ExerciseTable.toExercise(): Exercise = when (type) {
@@ -78,7 +79,7 @@ fun ExerciseTable.toExercise(): Exercise = when (type) {
     ExerciseType.BODY_WEIGHT ->
         BodyWeightExercise(id, name, description, equipment, muscleGroup, sets!!, reps!!)
     ExerciseType.CARDIO ->
-        CardioExercise(id, name, description, equipment, muscleGroup)
+        CardioExercise(id, name, description, equipment, muscleGroup, duration!!)
 }
 
 fun Exercise.toExerciseTable(): ExerciseTable = when (this) {
