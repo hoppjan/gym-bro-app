@@ -14,9 +14,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import de.janhopp.gymbro.model.planning.WeightExercise
-import de.janhopp.gymbro.model.exercise.kg
-import de.janhopp.gymbro.model.planning.WorkoutPlan
 import de.janhopp.gymbro.ui.intro.OnboardingScreen
 import de.janhopp.gymbro.ui.intro.OnboardingViewModel
 import de.janhopp.gymbro.ui.workout.WorkoutRoutinePickerScreen
