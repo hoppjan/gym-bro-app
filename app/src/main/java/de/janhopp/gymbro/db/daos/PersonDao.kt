@@ -6,27 +6,28 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import de.janhopp.gymbro.db.model.PersonTable
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PersonDao {
     @Insert
-    fun insert(person: PersonTable)
+    suspend fun insert(person: PersonTable)
 
     @Query("SELECT * FROM persontable")
-    fun getAll(): List<PersonTable>
+    fun getAll(): Flow<List<PersonTable>>
 
     @Query("SELECT * FROM persontable WHERE id = :id")
-    fun getById(id: Int): PersonTable
+    fun getById(id: Int): Flow<PersonTable>
 
     @Query("SELECT * FROM persontable WHERE name = :name")
-    fun getByName(name: String): PersonTable
+    fun getByName(name: String): Flow<PersonTable>
 
     @Query("SELECT * FROM persontable LIMIT 1")
-    fun getFirst(): PersonTable
+    fun getFirst(): Flow<PersonTable>
 
     @Update
-    fun update(person: PersonTable)
+    suspend fun update(person: PersonTable)
 
     @Delete
-    fun delete(person: PersonTable)
+    suspend fun delete(person: PersonTable)
 }

@@ -6,24 +6,25 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import de.janhopp.gymbro.db.model.execution.SetTable
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface SetDao {
     @Insert
-    fun insert(set: SetTable)
+    suspend fun insert(set: SetTable)
 
     @Query("SELECT * FROM SetTable")
-    fun getAll(): List<SetTable>
+    fun getAll(): Flow<List<SetTable>>
 
     @Query("SELECT * FROM SetTable WHERE id = :id")
-    fun getById(id: Int): SetTable
+    fun getById(id: Int): Flow<SetTable>
 
     @Query("SELECT * FROM SetTable WHERE exerciseExecutionId = :exerciseExecutionId")
-    fun getByExerciseId(exerciseExecutionId: Int): List<SetTable>
+    fun getByExerciseId(exerciseExecutionId: Int): Flow<List<SetTable>>
 
     @Update
-    fun update(set: SetTable)
+    suspend fun update(set: SetTable)
 
     @Delete
-    fun delete(set: SetTable)
+    suspend fun delete(set: SetTable)
 }

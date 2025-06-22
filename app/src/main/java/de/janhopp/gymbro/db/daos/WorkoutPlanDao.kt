@@ -6,27 +6,28 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import de.janhopp.gymbro.db.model.planning.WorkoutPlanTable
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface WorkoutPlanDao {
     @Insert
-    fun insert(workoutPlan: WorkoutPlanTable)
+    suspend fun insert(workoutPlan: WorkoutPlanTable)
 
     @Query("SELECT * FROM workoutplantable")
-    fun getAll(): List<WorkoutPlanTable>
+    fun getAll(): Flow<List<WorkoutPlanTable>>
 
     @Query("SELECT * FROM workoutplantable WHERE id = :id")
-    fun getById(id: Int): WorkoutPlanTable
+    fun getById(id: Int): Flow<WorkoutPlanTable>
 
     @Query("SELECT * FROM workoutplantable WHERE name = :name")
-    fun getByName(name: String): WorkoutPlanTable
+    fun getByName(name: String): Flow<WorkoutPlanTable>
 
     @Query("SELECT * FROM workoutplantable WHERE personId = :personId")
-    fun getByPersonId(personId: Int): List<WorkoutPlanTable>
+    fun getByPersonId(personId: Int): Flow<List<WorkoutPlanTable>>
 
     @Update
-    fun update(workoutPlan: WorkoutPlanTable)
+    suspend fun update(workoutPlan: WorkoutPlanTable)
 
     @Delete
-    fun delete(workoutPlan: WorkoutPlanTable)
+    suspend fun delete(workoutPlan: WorkoutPlanTable)
 }
