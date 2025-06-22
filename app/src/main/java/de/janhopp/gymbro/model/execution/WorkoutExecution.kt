@@ -1,10 +1,12 @@
 package de.janhopp.gymbro.model.execution
 
 import de.janhopp.gymbro.model.planning.WorkoutPlan
+import java.util.Date
 
 data class WorkoutExecution(
     val id: Long,
-    val date: Long,
-    val routine: WorkoutPlan,
-    val executions: List<ExerciseExecution>,
+    val start: Date,
+    val finish: Date,
+    val workoutPlan: WorkoutPlan,
+    val exerciseExecutions: List<ExerciseExecution>,
 )
