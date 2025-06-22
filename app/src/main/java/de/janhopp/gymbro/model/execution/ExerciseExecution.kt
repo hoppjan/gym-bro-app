@@ -6,5 +6,5 @@ data class ExerciseExecution(
     val id: Int,
     val index: Int,
     val exercise: PlannedExercise,
-    val sets: List<Set>,
+    val sets: List<ExecutionSet>,
 )
