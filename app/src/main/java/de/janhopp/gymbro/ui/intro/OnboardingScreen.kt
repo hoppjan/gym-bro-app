@@ -47,7 +47,7 @@ fun OnboardingScreen(
     var selectedDate by remember { mutableStateOf<Long?>(null) }
 
     if (isOnboardingComplete)
-        navigate(Destination.WorkoutRoutinePicker)
+        navigate(Destination.WorkoutPlanPicker)
 
     Column(
         modifier = Modifier
@@ -114,7 +114,7 @@ fun OnboardingScreen(
                 .padding(8.dp),
             onClick = {
                 viewModel.onboardUser(name, Date(selectedDate!!))
-                navigate(Destination.WorkoutRoutinePicker)
+                navigate(Destination.WorkoutPlanPicker)
             }
         ) {
             Text(text = "Let's go!")

@@ -16,9 +16,9 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import de.janhopp.gymbro.ui.intro.OnboardingScreen
 import de.janhopp.gymbro.ui.intro.OnboardingViewModel
-import de.janhopp.gymbro.ui.workout.WorkoutRoutinePickerScreen
-import de.janhopp.gymbro.ui.workout.routine.WorkoutRoutineScreen
-import de.janhopp.gymbro.ui.workout.routine.WorkoutRoutineViewModel
+import de.janhopp.gymbro.ui.workout.WorkoutPlanPickerScreen
+import de.janhopp.gymbro.ui.workout.planning.WorkoutPlanScreen
+import de.janhopp.gymbro.ui.workout.planning.WorkoutPlanViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -34,33 +34,33 @@ fun NavHostScreen() {
         },
     ) { innerPadding ->
         val onboardingViewModel = koinViewModel<OnboardingViewModel>()
-        val workoutRoutineViewModel = koinViewModel<WorkoutRoutineViewModel>()
+        val workoutPlanViewModel = koinViewModel<WorkoutPlanViewModel>()
 
         val isOnboardingComplete by onboardingViewModel.isOnboardingComplete.collectAsState(initial = true)
         NavHost(
             modifier = Modifier.padding(innerPadding),
             navController = navController,
-            startDestination = if (isOnboardingComplete) Destination.WorkoutRoutinePicker else Destination.Onboarding,
+            startDestination = if (isOnboardingComplete) Destination.WorkoutPlanPicker else Destination.Onboarding,
         ) {
             composable<Destination.Onboarding> {
                 OnboardingScreen(onboardingViewModel, { navController.navigate(it) })
             }
-            composable<Destination.WorkoutRoutinePicker> {
-                val workoutRoutines by workoutRoutineViewModel.getWorkoutRoutines().collectAsState(emptyList())
+            composable<Destination.WorkoutPlanPicker> {
+                val workoutPlans by workoutPlanViewModel.getWorkoutPlans().collectAsState(emptyList())
 
-                WorkoutRoutinePickerScreen(
-                    workoutPlans = workoutRoutines,
-                    onRoutineSelected = { routine ->
+                WorkoutPlanPickerScreen(
+                    workoutPlans = workoutPlans,
+                    onWorkoutPlanSelected = { workoutPlan ->
                         navController.navigate(
-                            Destination.WorkoutRoutineOverview(routine.id)
+                            Destination.WorkoutPlanOverview(workoutPlan.id)
                         )
                     }
                 )
             }
-            composable<Destination.WorkoutRoutineOverview> { backStackEntry ->
-                val args = backStackEntry.toRoute<Destination.WorkoutRoutineOverview>()
-                WorkoutRoutineScreen(
-                    routineId = args.routineId,
+            composable<Destination.WorkoutPlanOverview> { backStackEntry ->
+                val args = backStackEntry.toRoute<Destination.WorkoutPlanOverview>()
+                WorkoutPlanScreen(
+                    workoutPlanId = args.workoutPlanId,
                 )
             }
         }

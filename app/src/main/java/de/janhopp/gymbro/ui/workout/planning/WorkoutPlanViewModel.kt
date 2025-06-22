@@ -1,32 +1,34 @@
-package de.janhopp.gymbro.ui.workout.routine
+package de.janhopp.gymbro.ui.workout.planning
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import de.janhopp.gymbro.model.exercise.kg
+import de.janhopp.gymbro.db.daos.PlannedExerciseDao
+import de.janhopp.gymbro.db.daos.WorkoutPlanDao
 import de.janhopp.gymbro.model.planning.PlannedExercise
-import de.janhopp.gymbro.model.planning.WeightExercise
 import de.janhopp.gymbro.model.planning.WorkoutPlan
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
 
-class WorkoutRoutineViewModel(
-
+class WorkoutPlanViewModel(
+    private val workoutPlanDao: WorkoutPlanDao,
+    private val plannedExerciseDao: PlannedExerciseDao,
 ) : ViewModel() {
-    fun getWorkoutRoutines(): Flow<List<WorkoutPlan>> {
+    fun getWorkoutPlans(): Flow<List<WorkoutPlan>> {
         return flowOf()
     }
 
-    fun getWorkoutRoutine(id: Int): Flow<WorkoutPlan> {
+    fun getWorkoutPlan(id: Int): Flow<WorkoutPlan> {
         return flowOf(WorkoutPlan(0, "", null, null))
     }
 
-    fun addWorkoutRoutines() {
+    fun addWorkoutPlans() {
         viewModelScope.launch {
+
         }
     }
 
-    fun getWorkoutRoutineExercises(routineId: Int): Flow<List<PlannedExercise>> {
+    fun getWorkoutPlanExercises(workoutPlanId: Int): Flow<List<PlannedExercise>> {
         return flowOf()
     }
 

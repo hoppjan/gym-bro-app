@@ -21,15 +21,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import de.janhopp.gymbro.model.planning.WorkoutPlan
-import de.janhopp.gymbro.ui.workout.routine.WorkoutRoutineViewModel
+import de.janhopp.gymbro.ui.workout.planning.WorkoutPlanViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun WorkoutRoutinePickerScreen(
+fun WorkoutPlanPickerScreen(
     modifier: Modifier = Modifier,
     workoutPlans: List<WorkoutPlan>,
-    onRoutineSelected: (WorkoutPlan) -> Unit = {},
-    viewModel: WorkoutRoutineViewModel = koinViewModel(),
+    onWorkoutPlanSelected: (WorkoutPlan) -> Unit = {},
+    viewModel: WorkoutPlanViewModel = koinViewModel(),
 ) {
     Box(
         modifier = modifier.fillMaxSize(),
@@ -37,18 +37,18 @@ fun WorkoutRoutinePickerScreen(
         Column(
             modifier = Modifier.verticalScroll(rememberScrollState()),
         ) {
-            workoutPlans.forEach { routine ->
+            workoutPlans.forEach { workoutPlan ->
                 ListItem(
-                    modifier = Modifier.clickable { onRoutineSelected(routine) },
+                    modifier = Modifier.clickable { onWorkoutPlanSelected(workoutPlan) },
                     headlineContent = {
-                        Text(text = routine.name)
+                        Text(text = workoutPlan.name)
                     },
                     supportingContent = {
-                        Text(text = routine.description ?: "")
+                        Text(text = workoutPlan.description ?: "")
                     },
                     leadingContent = {
                         Text(
-                            text = routine.icon ?: "",
+                            text = workoutPlan.icon ?: "",
                             modifier = Modifier.width(20.dp)
                         )
                     },
@@ -60,9 +60,9 @@ fun WorkoutRoutinePickerScreen(
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(16.dp),
-            onClick = { viewModel.addWorkoutRoutines() },
-            icon = { Icon(Icons.Filled.Add, contentDescription = "Add routines") },
-            text = { Text(text = "Add routines") },
+            onClick = { viewModel.addWorkoutPlans() },
+            icon = { Icon(Icons.Filled.Add, contentDescription = "Add workout plan") },
+            text = { Text(text = "Add workout plan") },
         )
     }
 }

@@ -1,4 +1,4 @@
-package de.janhopp.gymbro.ui.workout.routine
+package de.janhopp.gymbro.ui.workout.planning
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,20 +24,20 @@ import org.koin.androidx.compose.koinViewModel
 import sh.calvin.reorderable.ReorderableColumn
 
 @Composable
-fun WorkoutRoutineScreen(
+fun WorkoutPlanScreen(
     modifier: Modifier = Modifier,
-    routineId: Int,
-    viewModel: WorkoutRoutineViewModel = koinViewModel(),
+    workoutPlanId: Int,
+    viewModel: WorkoutPlanViewModel = koinViewModel(),
 ) {
-    val routine by viewModel.getWorkoutRoutine(routineId)
+    val workoutPlan by viewModel.getWorkoutPlan(workoutPlanId)
         .collectAsState(initial = WorkoutPlan(0, "", null, null))
-    val exercises by viewModel.getWorkoutRoutineExercises(routineId)
+    val exercises by viewModel.getWorkoutPlanExercises(workoutPlanId)
         .collectAsState(initial = emptyList())
     Column(
         modifier = modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        routine.icon?.let {
+        workoutPlan.icon?.let {
             Text(
                 text = it,
                 modifier = Modifier
@@ -46,12 +46,12 @@ fun WorkoutRoutineScreen(
             )
         }
         Text(
-            text = routine.name,
+            text = workoutPlan.name,
             modifier = Modifier
                 .padding(top = 32.dp, bottom = 8.dp),
             style = MaterialTheme.typography.titleLarge,
         )
-        routine.description?.let { description ->
+        workoutPlan.description?.let { description ->
             Text(
                 text = description,
                 modifier = Modifier

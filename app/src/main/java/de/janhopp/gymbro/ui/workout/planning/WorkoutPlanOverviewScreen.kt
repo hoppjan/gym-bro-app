@@ -1,4 +1,4 @@
-package de.janhopp.gymbro.ui.workout.routine
+package de.janhopp.gymbro.ui.workout.planning
 
 import androidx.compose.runtime.Composable
 

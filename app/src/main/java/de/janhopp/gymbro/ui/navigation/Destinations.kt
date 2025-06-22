@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 sealed interface Destination {
     @Serializable data object Onboarding : Destination
-    @Serializable data object WorkoutRoutinePicker : Destination
-    @Serializable data class WorkoutRoutineOverview(val routineId: Int) : Destination
+    @Serializable data object WorkoutPlanPicker : Destination
+    @Serializable data class WorkoutPlanOverview(val workoutPlanId: Int) : Destination
 }
