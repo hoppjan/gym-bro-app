@@ -3,7 +3,7 @@ package de.janhopp.gymbro.ui.workout.routine
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import de.janhopp.gymbro.model.exercise.kg
-import de.janhopp.gymbro.model.planning.Exercise
+import de.janhopp.gymbro.model.planning.PlannedExercise
 import de.janhopp.gymbro.model.planning.WeightExercise
 import de.janhopp.gymbro.model.planning.WorkoutPlan
 import kotlinx.coroutines.flow.Flow
@@ -26,7 +26,7 @@ class WorkoutRoutineViewModel(
         }
     }
 
-    fun getWorkoutRoutineExercises(routineId: Int): Flow<List<Exercise>> {
+    fun getWorkoutRoutineExercises(routineId: Int): Flow<List<PlannedExercise>> {
         return flowOf()
     }
 

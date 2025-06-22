@@ -17,7 +17,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import de.janhopp.gymbro.model.planning.Exercise
+import de.janhopp.gymbro.model.planning.PlannedExercise
 import de.janhopp.gymbro.model.planning.WeightExercise
 import de.janhopp.gymbro.model.planning.WorkoutPlan
 import org.koin.androidx.compose.koinViewModel
@@ -65,7 +65,7 @@ fun WorkoutRoutineScreen(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = if (exercises.isEmpty()) Arrangement.Center else Arrangement.Top
-        ) { index: Int, exercise: Exercise, isDragging: Boolean ->
+        ) { index: Int, exercise: PlannedExercise, isDragging: Boolean ->
             if (exercises.isEmpty()) {
                 Button(
                     onClick = { viewModel.addExercises() },

@@ -3,13 +3,13 @@ package de.janhopp.gymbro.ui.workout.exercise
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import de.janhopp.gymbro.model.planning.Exercise
+import de.janhopp.gymbro.model.planning.PlannedExercise
 import de.janhopp.gymbro.model.planning.WeightExercise
 
 @Composable
 fun ExerciseEditorScreen(
-    exercise: Exercise,
-    save: (Exercise) -> Unit,
+    exercise: PlannedExercise,
+    save: (PlannedExercise) -> Unit,
 ) {
     val (name, setName) = remember { mutableStateOf(exercise.name) }
     val (description, setDescription) = remember { mutableStateOf(exercise.description) }
@@ -19,8 +19,5 @@ fun ExerciseEditorScreen(
         val (sets, setSets) = remember { mutableStateOf(exercise.sets) }
         val (reps, setReps) = remember { mutableStateOf(exercise.reps) }
         val (weight, setWeight) = remember { mutableStateOf(exercise.weight) }
-        val saveWeightExercise = {
-            save(WeightExercise(exercise.id, name, description, equipment, muscleGroup, sets, reps, weight))
-        }
     }
 }
