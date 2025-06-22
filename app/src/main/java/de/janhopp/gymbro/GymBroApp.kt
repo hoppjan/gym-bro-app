@@ -9,6 +9,7 @@ import de.janhopp.gymbro.db.daos.PlannedExerciseDao
 import de.janhopp.gymbro.db.daos.SetDao
 import de.janhopp.gymbro.db.daos.WorkoutExecutionDao
 import de.janhopp.gymbro.db.daos.WorkoutPlanDao
+import de.janhopp.gymbro.ui.intro.OnboardingViewModel
 import de.janhopp.gymbro.ui.workout.routine.WorkoutRoutineViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -34,6 +35,7 @@ class GymBroApp : Application() {
                     single<WorkoutExecutionDao> { db.workoutExecutionDao() }
                     single<ExerciseExecutionDao> { db.exerciseExecutionDao() }
                     single<SetDao> { db.setDao() }
+                    viewModel { OnboardingViewModel(get()) }
                     viewModel { WorkoutRoutineViewModel() }
                 },
             )

@@ -17,6 +17,8 @@ import androidx.navigation.toRoute
 import de.janhopp.gymbro.model.planning.WeightExercise
 import de.janhopp.gymbro.model.exercise.kg
 import de.janhopp.gymbro.model.planning.WorkoutPlan
+import de.janhopp.gymbro.ui.intro.OnboardingScreen
+import de.janhopp.gymbro.ui.intro.OnboardingViewModel
 import de.janhopp.gymbro.ui.workout.WorkoutRoutinePickerScreen
 import de.janhopp.gymbro.ui.workout.routine.WorkoutRoutineScreen
 import de.janhopp.gymbro.ui.workout.routine.WorkoutRoutineViewModel
@@ -34,13 +36,18 @@ fun NavHostScreen() {
             )
         },
     ) { innerPadding ->
+        val onboardingViewModel = koinViewModel<OnboardingViewModel>()
         val workoutRoutineViewModel = koinViewModel<WorkoutRoutineViewModel>()
 
+        val isOnboardingComplete by onboardingViewModel.isOnboardingComplete.collectAsState(initial = false)
         NavHost(
             modifier = Modifier.padding(innerPadding),
             navController = navController,
-            startDestination = Destination.WorkoutRoutinePicker
+            startDestination = if (isOnboardingComplete) Destination.WorkoutRoutinePicker else Destination.Onboarding,
         ) {
+            composable<Destination.Onboarding> {
+                OnboardingScreen(onboardingViewModel)
+            }
             composable<Destination.WorkoutRoutinePicker> {
                 val workoutRoutines by workoutRoutineViewModel.getWorkoutRoutines().collectAsState(emptyList())
 
