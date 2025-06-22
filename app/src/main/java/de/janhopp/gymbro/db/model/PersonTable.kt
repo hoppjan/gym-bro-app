@@ -7,4 +7,5 @@ import androidx.room.PrimaryKey
 data class PersonTable(
     @PrimaryKey(autoGenerate = true) val id: Int,
     val name: String,
+    val birthday: Long,
 )
