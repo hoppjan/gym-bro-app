@@ -10,7 +10,7 @@ import de.janhopp.gymbro.db.model.planning.WorkoutPlanTable
         ForeignKey(entity = WorkoutPlanTable::class, parentColumns = ["id"], childColumns = ["workoutPlanId"]),
     ]
 )
-data class WorkoutExecution(
+data class WorkoutExecutionTable(
     @PrimaryKey(autoGenerate = true) val id: Int,
     val start: Long,
     val finish: Long,
