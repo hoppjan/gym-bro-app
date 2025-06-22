@@ -2,49 +2,35 @@ package de.janhopp.gymbro.ui.workout.routine
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import de.janhopp.gymbro.db.ExerciseDao
-import de.janhopp.gymbro.db.WorkoutRoutineDao
-import de.janhopp.gymbro.model.planning.Exercise
-import de.janhopp.gymbro.model.planning.ExerciseTable
-import de.janhopp.gymbro.model.planning.WeightExercise
 import de.janhopp.gymbro.model.exercise.kg
-import de.janhopp.gymbro.model.planning.toExercise
-import de.janhopp.gymbro.model.planning.toExerciseTable
+import de.janhopp.gymbro.model.planning.Exercise
+import de.janhopp.gymbro.model.planning.WeightExercise
 import de.janhopp.gymbro.model.planning.WorkoutPlan
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
 
 class WorkoutRoutineViewModel(
-    private val workoutRoutines: WorkoutRoutineDao,
-    private val exercises: ExerciseDao,
+
 ) : ViewModel() {
     fun getWorkoutRoutines(): Flow<List<WorkoutPlan>> {
-        return workoutRoutines.getAll()
+        return flowOf()
     }
 
     fun getWorkoutRoutine(id: Int): Flow<WorkoutPlan> {
-        return workoutRoutines.findById(id)
+        return flowOf(WorkoutPlan(0, "", null, null))
     }
 
     fun addWorkoutRoutines() {
         viewModelScope.launch {
-            workoutRoutines.insertAll(*routines.toTypedArray())
         }
     }
 
     fun getWorkoutRoutineExercises(routineId: Int): Flow<List<Exercise>> {
-        return exercises.getAll().map { list -> list.map { it.toExercise() } }
+        return flowOf()
     }
 
     fun addExercises() {
-        viewModelScope.launch {
-            exercises.insertAll(
-                *exerciseList
-                    .map { it.toExerciseTable() }
-                    .toTypedArray<ExerciseTable>()
-            )
-        }
     }
 }
 
