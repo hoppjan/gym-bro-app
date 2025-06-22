@@ -1,5 +1,7 @@
 package de.janhopp.gymbro.model.execution
 
+import de.janhopp.gymbro.model.exercise.Weight
+
 interface Set {
     val id: Int
     val index: Int
@@ -8,7 +10,7 @@ interface Set {
 data class WeightSet(
     override val id: Int,
     override val index: Int,
-    val weight: Int,
+    val weight: Weight,
     val reps: Int,
 ) : Set
 
