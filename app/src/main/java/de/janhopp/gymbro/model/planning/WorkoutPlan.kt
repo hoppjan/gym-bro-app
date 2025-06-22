@@ -5,4 +5,5 @@ data class WorkoutPlan(
     val name: String,
     val description: String?,
     val icon: String?,
+    val exercises: List<Exercise> = emptyList(),
 )

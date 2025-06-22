@@ -48,7 +48,7 @@ fun WorkoutRoutinePickerScreen(
                     },
                     leadingContent = {
                         Text(
-                            text = routine.emoji ?: "",
+                            text = routine.icon ?: "",
                             modifier = Modifier.width(20.dp)
                         )
                     },

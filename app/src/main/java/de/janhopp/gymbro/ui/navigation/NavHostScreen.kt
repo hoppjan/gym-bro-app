@@ -92,11 +92,5 @@ private val exercises = listOf(
     ),
 )
 
-private val routines = listOf(
-    WorkoutPlan(0, "Beine", "Unterkörper", "\uD83E\uDDB5"),
-    WorkoutPlan(1, "Arme", "Oberkörper", "\uD83D\uDCAA"),
-    WorkoutPlan(2, "Po", "Popo", "\uD83C\uDF51"),
-    WorkoutPlan(3, "Cardio", "Lässt jedes Herz höher schlagen", "❤\uFE0F"),
-    WorkoutPlan(4, "Wilder Mix", "Gewichte, Gewichte, Gewichte", null),
-) * 3
+private val routines = listOf<WorkoutPlan>()
 

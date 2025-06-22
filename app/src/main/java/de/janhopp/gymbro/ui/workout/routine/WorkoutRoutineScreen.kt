@@ -37,7 +37,7 @@ fun WorkoutRoutineScreen(
         modifier = modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        routine.emoji?.let {
+        routine.icon?.let {
             Text(
                 text = it,
                 modifier = Modifier

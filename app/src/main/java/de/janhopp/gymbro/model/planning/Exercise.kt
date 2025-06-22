@@ -2,7 +2,7 @@ package de.janhopp.gymbro.model.planning
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverter
+import de.janhopp.gymbro.db.model.ExerciseType
 import de.janhopp.gymbro.model.exercise.Weight
 
 @Entity
@@ -18,21 +18,6 @@ data class ExerciseTable(
     val weight: Weight?,
     val duration: Int?,
 )
-
-enum class ExerciseType {
-    WEIGHT,
-    BODY_WEIGHT,
-    CARDIO,
-}
-
-class ExerciseTypeConverter {
-    @TypeConverter
-    fun fromString(value: String?): ExerciseType? =
-        value?.let { ExerciseType.valueOf(it) }
-
-    @TypeConverter
-    fun typeToString(type: ExerciseType?): String? = type?.toString()
-}
 
 sealed interface Exercise {
     val id: Int
