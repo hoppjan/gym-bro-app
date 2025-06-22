@@ -3,7 +3,6 @@ package de.janhopp.gymbro.model.planning
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
-import de.janhopp.gymbro.model.exercise.Duration
 import de.janhopp.gymbro.model.exercise.Weight
 
 @Entity
@@ -17,7 +16,7 @@ data class ExerciseTable(
     val sets: Int?,
     val reps: Int?,
     val weight: Weight?,
-    val duration: Duration?,
+    val duration: Int?,
 )
 
 enum class ExerciseType {
@@ -70,7 +69,7 @@ data class CardioExercise(
     override val description: String?,
     override val equipment: String?,
     override val muscleGroup: String?,
-    val duration: Duration,
+    val duration: Int,
 ) : Exercise
 
 fun ExerciseTable.toExercise(): Exercise = when (type) {
