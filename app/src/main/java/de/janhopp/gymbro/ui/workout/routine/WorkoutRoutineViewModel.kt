@@ -33,34 +33,3 @@ class WorkoutRoutineViewModel(
     fun addExercises() {
     }
 }
-
-private val exerciseList = listOf(
-    WeightExercise(
-        id = 0,
-        name = "Leg Press",
-        description = "Wie Kniebeugen im Autsch-Modus",
-        equipment = "Leg press",
-        muscleGroup = "Beine",
-        sets = 3,
-        reps = 12,
-        weight = 80.kg,
-    ),
-    WeightExercise(
-        id = 0,
-        name = "Leg Press 2",
-        description = "Wie Kniebeugen im Autsch-Modus 2",
-        equipment = "Wieder Leg press",
-        muscleGroup = "Beine",
-        sets = 3,
-        reps = 12,
-        weight = 120.kg,
-    ),
-)
-
-private val routines = listOf(
-    WorkoutPlan(0, "Beine", "Unterkörper", "\uD83E\uDDB5"),
-    WorkoutPlan(0, "Arme", "Oberkörper", "\uD83D\uDCAA"),
-    WorkoutPlan(0, "Po", "Popo", "\uD83C\uDF51"),
-    WorkoutPlan(0, "Cardio", "Lässt jedes Herz höher schlagen", "❤\uFE0F"),
-    WorkoutPlan(0, "Wilder Mix", "Gewichte, Gewichte, Gewichte", null),
-)

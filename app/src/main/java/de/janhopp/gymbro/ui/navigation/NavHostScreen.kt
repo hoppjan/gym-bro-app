@@ -68,29 +68,3 @@ operator fun <T> List<T>.times(n: Int): List<T> = buildList {
         addAll(elements = this@times)
     }
 }
-
-private val exercises = listOf(
-    WeightExercise(
-        id = 0,
-        name = "Leg Press",
-        description = "Wie Kniebeugen im Autsch-Modus",
-        equipment = "Leg press",
-        muscleGroup = "Beine",
-        sets = 3,
-        reps = 12,
-        weight = 80.kg,
-    ),
-    WeightExercise(
-        id = 1,
-        name = "Leg Press 2",
-        description = "Wie Kniebeugen im Autsch-Modus 2",
-        equipment = "Wieder Leg press",
-        muscleGroup = "Beine",
-        sets = 3,
-        reps = 12,
-        weight = 120.kg,
-    ),
-)
-
-private val routines = listOf<WorkoutPlan>()
-
