@@ -2,6 +2,7 @@ package de.janhopp.gymbro.db.model.planning
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import de.janhopp.gymbro.model.exercise.Weight
 
 @Entity
 data class PlannedExerciseTable(
@@ -13,4 +14,8 @@ data class PlannedExerciseTable(
     val description: String?,
     val equipment: String?,
     val muscleGroup: String?,
+    val sets: Int?,
+    val reps: Int?,
+    val weight: Weight?,
+    val duration: Int?,
 )
