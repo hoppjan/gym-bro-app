@@ -7,12 +7,12 @@ import de.janhopp.gymbro.model.exercise.DurationTypeConverter
 import de.janhopp.gymbro.model.planning.ExerciseTable
 import de.janhopp.gymbro.model.planning.ExerciseTypeConverter
 import de.janhopp.gymbro.model.exercise.WeightTypeConverter
-import de.janhopp.gymbro.model.planning.WorkoutRoutine
+import de.janhopp.gymbro.model.planning.WorkoutPlan
 
 @Database(
     entities = [
         ExerciseTable::class,
-        WorkoutRoutine::class,
+        WorkoutPlan::class,
     ],
     version = 1,
     exportSchema = false,

@@ -20,15 +20,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import de.janhopp.gymbro.model.planning.WorkoutRoutine
+import de.janhopp.gymbro.model.planning.WorkoutPlan
 import de.janhopp.gymbro.ui.workout.routine.WorkoutRoutineViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun WorkoutRoutinePickerScreen(
     modifier: Modifier = Modifier,
-    workoutRoutines: List<WorkoutRoutine>,
-    onRoutineSelected: (WorkoutRoutine) -> Unit = {},
+    workoutPlans: List<WorkoutPlan>,
+    onRoutineSelected: (WorkoutPlan) -> Unit = {},
     viewModel: WorkoutRoutineViewModel = koinViewModel(),
 ) {
     Box(
@@ -37,7 +37,7 @@ fun WorkoutRoutinePickerScreen(
         Column(
             modifier = Modifier.verticalScroll(rememberScrollState()),
         ) {
-            workoutRoutines.forEach { routine ->
+            workoutPlans.forEach { routine ->
                 ListItem(
                     modifier = Modifier.clickable { onRoutineSelected(routine) },
                     headlineContent = {

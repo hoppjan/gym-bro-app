@@ -10,7 +10,7 @@ import de.janhopp.gymbro.model.planning.WeightExercise
 import de.janhopp.gymbro.model.exercise.kg
 import de.janhopp.gymbro.model.planning.toExercise
 import de.janhopp.gymbro.model.planning.toExerciseTable
-import de.janhopp.gymbro.model.planning.WorkoutRoutine
+import de.janhopp.gymbro.model.planning.WorkoutPlan
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -19,11 +19,11 @@ class WorkoutRoutineViewModel(
     private val workoutRoutines: WorkoutRoutineDao,
     private val exercises: ExerciseDao,
 ) : ViewModel() {
-    fun getWorkoutRoutines(): Flow<List<WorkoutRoutine>> {
+    fun getWorkoutRoutines(): Flow<List<WorkoutPlan>> {
         return workoutRoutines.getAll()
     }
 
-    fun getWorkoutRoutine(id: Int): Flow<WorkoutRoutine> {
+    fun getWorkoutRoutine(id: Int): Flow<WorkoutPlan> {
         return workoutRoutines.findById(id)
     }
 
@@ -72,9 +72,9 @@ private val exerciseList = listOf(
 )
 
 private val routines = listOf(
-    WorkoutRoutine(0, "Beine", "Unterkörper", "\uD83E\uDDB5"),
-    WorkoutRoutine(0, "Arme", "Oberkörper", "\uD83D\uDCAA"),
-    WorkoutRoutine(0, "Po", "Popo", "\uD83C\uDF51"),
-    WorkoutRoutine(0, "Cardio", "Lässt jedes Herz höher schlagen", "❤\uFE0F"),
-    WorkoutRoutine(0, "Wilder Mix", "Gewichte, Gewichte, Gewichte", null),
+    WorkoutPlan(0, "Beine", "Unterkörper", "\uD83E\uDDB5"),
+    WorkoutPlan(0, "Arme", "Oberkörper", "\uD83D\uDCAA"),
+    WorkoutPlan(0, "Po", "Popo", "\uD83C\uDF51"),
+    WorkoutPlan(0, "Cardio", "Lässt jedes Herz höher schlagen", "❤\uFE0F"),
+    WorkoutPlan(0, "Wilder Mix", "Gewichte, Gewichte, Gewichte", null),
 )

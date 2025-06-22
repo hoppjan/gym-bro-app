@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import de.janhopp.gymbro.model.planning.Exercise
 import de.janhopp.gymbro.model.planning.WeightExercise
-import de.janhopp.gymbro.model.planning.WorkoutRoutine
+import de.janhopp.gymbro.model.planning.WorkoutPlan
 import org.koin.androidx.compose.koinViewModel
 import sh.calvin.reorderable.ReorderableColumn
 
@@ -30,7 +30,7 @@ fun WorkoutRoutineScreen(
     viewModel: WorkoutRoutineViewModel = koinViewModel(),
 ) {
     val routine by viewModel.getWorkoutRoutine(routineId)
-        .collectAsState(initial = WorkoutRoutine(0, "", null, null))
+        .collectAsState(initial = WorkoutPlan(0, "", null, null))
     val exercises by viewModel.getWorkoutRoutineExercises(routineId)
         .collectAsState(initial = emptyList())
     Column(

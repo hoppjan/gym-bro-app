@@ -16,7 +16,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import de.janhopp.gymbro.model.planning.WeightExercise
 import de.janhopp.gymbro.model.exercise.kg
-import de.janhopp.gymbro.model.planning.WorkoutRoutine
+import de.janhopp.gymbro.model.planning.WorkoutPlan
 import de.janhopp.gymbro.ui.workout.WorkoutRoutinePickerScreen
 import de.janhopp.gymbro.ui.workout.routine.WorkoutRoutineScreen
 import de.janhopp.gymbro.ui.workout.routine.WorkoutRoutineViewModel
@@ -45,7 +45,7 @@ fun NavHostScreen() {
                 val workoutRoutines by workoutRoutineViewModel.getWorkoutRoutines().collectAsState(emptyList())
 
                 WorkoutRoutinePickerScreen(
-                    workoutRoutines = workoutRoutines,
+                    workoutPlans = workoutRoutines,
                     onRoutineSelected = { routine ->
                         navController.navigate(
                             Destination.WorkoutRoutineOverview(routine.id)
@@ -93,10 +93,10 @@ private val exercises = listOf(
 )
 
 private val routines = listOf(
-    WorkoutRoutine(0, "Beine", "Unterkörper", "\uD83E\uDDB5"),
-    WorkoutRoutine(1, "Arme", "Oberkörper", "\uD83D\uDCAA"),
-    WorkoutRoutine(2, "Po", "Popo", "\uD83C\uDF51"),
-    WorkoutRoutine(3, "Cardio", "Lässt jedes Herz höher schlagen", "❤\uFE0F"),
-    WorkoutRoutine(4, "Wilder Mix", "Gewichte, Gewichte, Gewichte", null),
+    WorkoutPlan(0, "Beine", "Unterkörper", "\uD83E\uDDB5"),
+    WorkoutPlan(1, "Arme", "Oberkörper", "\uD83D\uDCAA"),
+    WorkoutPlan(2, "Po", "Popo", "\uD83C\uDF51"),
+    WorkoutPlan(3, "Cardio", "Lässt jedes Herz höher schlagen", "❤\uFE0F"),
+    WorkoutPlan(4, "Wilder Mix", "Gewichte, Gewichte, Gewichte", null),
 ) * 3
 
