@@ -3,6 +3,12 @@ package de.janhopp.gymbro.db
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import de.janhopp.gymbro.db.daos.ExerciseExecutionDao
+import de.janhopp.gymbro.db.daos.PersonDao
+import de.janhopp.gymbro.db.daos.PlannedExerciseDao
+import de.janhopp.gymbro.db.daos.SetDao
+import de.janhopp.gymbro.db.daos.WorkoutExecutionDao
+import de.janhopp.gymbro.db.daos.WorkoutPlanDao
 import de.janhopp.gymbro.db.model.ExerciseTypeConverter
 import de.janhopp.gymbro.db.model.PersonTable
 import de.janhopp.gymbro.db.model.execution.ExerciseExecutionTable
@@ -29,4 +35,10 @@ import de.janhopp.gymbro.model.exercise.WeightTypeConverter
     WeightTypeConverter::class
 )
 abstract class GymDatabase : RoomDatabase() {
+    abstract fun personDao(): PersonDao
+    abstract fun workoutPlanDao(): WorkoutPlanDao
+    abstract fun plannedExerciseDao(): PlannedExerciseDao
+    abstract fun workoutExecutionDao(): WorkoutExecutionDao
+    abstract fun exerciseExecutionDao(): ExerciseExecutionDao
+    abstract fun setDao(): SetDao
 }
