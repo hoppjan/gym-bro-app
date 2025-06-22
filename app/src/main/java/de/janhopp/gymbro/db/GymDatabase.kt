@@ -15,6 +15,7 @@ import de.janhopp.gymbro.db.model.execution.ExerciseExecutionTable
 import de.janhopp.gymbro.db.model.execution.SetTable
 import de.janhopp.gymbro.db.model.execution.WorkoutExecutionTable
 import de.janhopp.gymbro.db.model.planning.PlannedExerciseTable
+import de.janhopp.gymbro.db.model.planning.PlannedWorkoutExercisesTable
 import de.janhopp.gymbro.db.model.planning.WorkoutPlanTable
 import de.janhopp.gymbro.model.exercise.WeightTypeConverter
 
@@ -23,6 +24,7 @@ import de.janhopp.gymbro.model.exercise.WeightTypeConverter
         PersonTable::class,
         WorkoutPlanTable::class,
         PlannedExerciseTable::class,
+        PlannedWorkoutExercisesTable::class,
         ExerciseExecutionTable::class,
         SetTable::class,
         WorkoutExecutionTable::class,
