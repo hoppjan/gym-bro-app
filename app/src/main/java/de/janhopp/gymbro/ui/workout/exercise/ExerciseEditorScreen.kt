@@ -3,8 +3,8 @@ package de.janhopp.gymbro.ui.workout.exercise
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import de.janhopp.gymbro.model.exercise.Exercise
-import de.janhopp.gymbro.model.exercise.WeightExercise
+import de.janhopp.gymbro.model.planning.Exercise
+import de.janhopp.gymbro.model.planning.WeightExercise
 
 @Composable
 fun ExerciseEditorScreen(

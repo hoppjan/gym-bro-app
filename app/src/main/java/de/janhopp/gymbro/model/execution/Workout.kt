@@ -1,6 +1,6 @@
-package de.janhopp.gymbro.model.workout
+package de.janhopp.gymbro.model.execution
 
-import de.janhopp.gymbro.model.exercise.ExerciseExecution
+import de.janhopp.gymbro.model.planning.WorkoutRoutine
 
 data class Workout(
     val id: Long,

@@ -17,9 +17,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import de.janhopp.gymbro.model.exercise.Exercise
-import de.janhopp.gymbro.model.exercise.WeightExercise
-import de.janhopp.gymbro.model.workout.WorkoutRoutine
+import de.janhopp.gymbro.model.planning.Exercise
+import de.janhopp.gymbro.model.planning.WeightExercise
+import de.janhopp.gymbro.model.planning.WorkoutRoutine
 import org.koin.androidx.compose.koinViewModel
 import sh.calvin.reorderable.ReorderableColumn
 

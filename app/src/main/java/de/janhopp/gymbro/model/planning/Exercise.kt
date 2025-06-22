@@ -1,8 +1,10 @@
-package de.janhopp.gymbro.model.exercise
+package de.janhopp.gymbro.model.planning
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
+import de.janhopp.gymbro.model.exercise.Duration
+import de.janhopp.gymbro.model.exercise.Weight
 
 @Entity
 data class ExerciseTable(

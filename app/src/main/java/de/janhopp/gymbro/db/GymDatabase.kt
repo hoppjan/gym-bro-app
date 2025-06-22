@@ -4,10 +4,10 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import de.janhopp.gymbro.model.exercise.DurationTypeConverter
-import de.janhopp.gymbro.model.exercise.ExerciseTable
-import de.janhopp.gymbro.model.exercise.ExerciseTypeConverter
+import de.janhopp.gymbro.model.planning.ExerciseTable
+import de.janhopp.gymbro.model.planning.ExerciseTypeConverter
 import de.janhopp.gymbro.model.exercise.WeightTypeConverter
-import de.janhopp.gymbro.model.workout.WorkoutRoutine
+import de.janhopp.gymbro.model.planning.WorkoutRoutine
 
 @Database(
     entities = [

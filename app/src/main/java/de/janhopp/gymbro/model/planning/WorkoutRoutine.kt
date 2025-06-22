@@ -1,4 +1,4 @@
-package de.janhopp.gymbro.model.workout
+package de.janhopp.gymbro.model.planning
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

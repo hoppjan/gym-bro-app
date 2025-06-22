@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import de.janhopp.gymbro.model.workout.WorkoutRoutine
+import de.janhopp.gymbro.model.planning.WorkoutRoutine
 import kotlinx.coroutines.flow.Flow
 
 @Dao

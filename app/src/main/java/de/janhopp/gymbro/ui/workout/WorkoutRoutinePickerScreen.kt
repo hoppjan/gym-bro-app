@@ -20,7 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import de.janhopp.gymbro.model.workout.WorkoutRoutine
+import de.janhopp.gymbro.model.planning.WorkoutRoutine
 import de.janhopp.gymbro.ui.workout.routine.WorkoutRoutineViewModel
 import org.koin.androidx.compose.koinViewModel
 
