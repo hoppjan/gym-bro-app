@@ -54,7 +54,6 @@ data class WeightExercise(
     val weight: Weight,
 ) : Exercise
 
-@Entity
 data class BodyWeightExercise(
     override val id: Int,
     override val name: String,
@@ -65,7 +64,6 @@ data class BodyWeightExercise(
     val reps: Int,
 ) : Exercise
 
-@Entity
 data class CardioExercise(
     override val id: Int,
     override val name: String,
