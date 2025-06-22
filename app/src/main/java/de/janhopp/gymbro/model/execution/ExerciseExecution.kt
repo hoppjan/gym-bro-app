@@ -1,9 +1,9 @@
 package de.janhopp.gymbro.model.execution
 
-import de.janhopp.gymbro.model.exercise.Subset
+import de.janhopp.gymbro.model.exercise.Set
 import de.janhopp.gymbro.model.planning.Exercise
 
 data class ExerciseExecution(
     val exercise: Exercise,
-    val sets: List<Subset>,
+    val sets: List<Set>,
 )
