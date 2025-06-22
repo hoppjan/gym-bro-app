@@ -5,15 +5,21 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import de.janhopp.gymbro.db.model.ExerciseTypeConverter
 import de.janhopp.gymbro.db.model.PersonTable
+import de.janhopp.gymbro.db.model.execution.ExerciseExecutionTable
+import de.janhopp.gymbro.db.model.execution.SetTable
+import de.janhopp.gymbro.db.model.execution.WorkoutExecutionTable
+import de.janhopp.gymbro.db.model.planning.PlannedExerciseTable
 import de.janhopp.gymbro.db.model.planning.WorkoutPlanTable
 import de.janhopp.gymbro.model.exercise.WeightTypeConverter
-import de.janhopp.gymbro.model.planning.ExerciseTable
 
 @Database(
     entities = [
-        ExerciseTable::class,
+        PersonTable::class,
         WorkoutPlanTable::class,
-        PersonTable::class
+        PlannedExerciseTable::class,
+        ExerciseExecutionTable::class,
+        SetTable::class,
+        WorkoutExecutionTable::class,
     ],
     version = 1,
     exportSchema = false,
