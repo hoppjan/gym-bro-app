@@ -17,6 +17,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import de.janhopp.gymbro.model.planning.BodyWeightExercise
 import de.janhopp.gymbro.model.planning.PlannedExercise
 import de.janhopp.gymbro.model.planning.WeightExercise
 import de.janhopp.gymbro.model.planning.WorkoutPlan
@@ -79,6 +80,7 @@ fun WorkoutPlanScreen(
                     },
                     supportingContent = {
                         Column {
+
                             if (exercise is WeightExercise) {
                                 Text(
                                     text = buildString {
@@ -91,8 +93,10 @@ fun WorkoutPlanScreen(
                                         append(exercise.weight.unit)
                                     }
                                 )
+                            } else if (exercise is BodyWeightExercise) {
+                                Text(text = "${exercise.sets} x ${exercise.reps}")
                             }
-                            Text(text = exercise.description ?: "")
+                            exercise.description?.let { Text(text = it) }
                         }
                     },
                     leadingContent = {
